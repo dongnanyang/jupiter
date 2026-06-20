@@ -536,8 +536,7 @@ tcp_fullnat_recv_client(struct rte_mbuf *m, struct ipv4_hdr *iph,
         (!SYN(th) && ACK(th) && !RST(th) && !FIN(th))) {
         TCP_PRINT(IPv4_TCP_FMT " [SYNPROXY SYN_SENT DROP]\n",
                   IPv4_TCP_ARG(iph, th));
-        rte_pktmbuf_free(conn->proxy.ack_mbuf);
-        conn->proxy.ack_mbuf = m;
+        rte_pktmbuf_free(m);
         return 0;
     }
 

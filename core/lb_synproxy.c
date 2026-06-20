@@ -418,6 +418,8 @@ synproxy_recv_client_ack(struct rte_mbuf *m, struct ipv4_hdr *iph,
 
             conn->proxy.isn = rte_be_to_cpu_32(th->recv_ack) - 1;
 
+            conn->proxy.ack_mbuf = m;
+
             synproxy_sent_backend_syn(m, iph, th, conn, &opts, dev);
         } else {
             rte_pktmbuf_free(m);
